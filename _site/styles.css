@@ -260,8 +260,8 @@ body {
   max-height: 50px;
 }
 .navbar-brand-container {
-  margin-right: 2rem;
-  padding-left: 0.5rem;
+  margin-right: 2rem !important;
+  padding-left: 0.5rem !important;
 }
 
 /* Navbar-linker */
