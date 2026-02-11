@@ -9,7 +9,7 @@ project:
 
 website:
   title: ""
-  site-url: "https://ktvedt.github.io/sva-codelib/"
+  site-url: "https://SVA-OsloMet.github.io/sva-codelib/"
   navbar:
     left:
       - href: dashboard/index.qmd

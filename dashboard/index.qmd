@@ -33,6 +33,6 @@ page-layout: full
 <section id="contact" class="contact-footer">
   <b>Kreditering:</b> Vi oppfordrer til å kreditere forfatterne når du bruker store deler av andres kode.
   <p>
-  <b>Finner du feil?</b> Opprett en sak på <a href="https://github.com/ktvedt/sva-codelib/issues" target="_blank" rel="noopener">GitHub Issues</a> eller ta kontakt med administrator: <a href="mailto:kodebibliotek@365.oslomet.no">kodebibliotek@365.oslomet.no</a></p>
+  <b>Finner du feil?</b> Opprett en sak på <a href="https://github.com/SVA-OsloMet/sva-codelib/issues" target="_blank" rel="noopener">GitHub Issues</a> eller ta kontakt med administrator: <a href="mailto:kodebibliotek@365.oslomet.no">kodebibliotek@365.oslomet.no</a></p>
   <p>Se <a href="faq.html">FAQ</a> for mer informasjon.</p>
 </section>
