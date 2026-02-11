@@ -257,7 +257,28 @@ body {
 
 /* Navbar logo */
 .navbar-brand img {
-  max-height: 55px;
+  max-height: 50px;
+}
+.navbar-brand-container {
+  margin-right: 2rem;
+  padding-left: 0.5rem;
+}
+
+/* Navbar-linker */
+.navbar .nav-link {
+  color: #1a1a1a !important;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s;
+  margin-right: 1rem;
+}
+.navbar .nav-link:hover {
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+}
+.navbar .nav-link.active {
+  color: #000 !important;
+  font-weight: 550;
+  border-bottom-color: #000;
 }
 
 html {
