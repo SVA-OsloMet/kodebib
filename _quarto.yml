@@ -9,8 +9,9 @@ project:
 
 website:
   title: ""
-  site-url: "https://SVA-OsloMet.github.io/sva-codelib/"
+  site-url: "https://SVA-OsloMet.github.io/kodebib/"
   navbar:
+    logo: assets/logo-oslomet.svg
     left:
       - href: dashboard/index.qmd
         text: Kodebibliotek

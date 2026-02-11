@@ -1,0 +1,7 @@
+title: "Diff-in-diff-analyse"
+authors: ["bruker1"]
+language: "R"
+data: ["registerdata"]
+themes: ["labour market economics", "causal methods"]
+methods: ["diff-in-diff"]
+description: ["DiD-modell for å estimere sysselsetting i to kommunegrupper"]

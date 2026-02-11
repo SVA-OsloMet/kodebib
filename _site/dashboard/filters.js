@@ -1,4 +1,4 @@
-// Store the current active filters (selected filter values and search text)
+// Oppretter objekt som lagrer aktive filtre (valgte filtre + søketekst)
 let activeFilters = {
   themes: new Set(),
   methods: new Set(),
@@ -7,8 +7,10 @@ let activeFilters = {
   search: ""
 };
 
+// Oppretter konstantliste med filterkategorier
 const FILTER_FIELDS = ["themes", "methods", "language", "data"];
 
+// Oppretter lister som lagrer filtre i valgt rekkefølge
 const filterSelectionOrder = {
   themes: [],
   methods: [],
@@ -16,16 +18,18 @@ const filterSelectionOrder = {
   data: []
 };
 
+// Oppretter variabler for å overvåke status til popup og siste telleverdi
 let currentFilterPopup = null;
 let currentFilterPopupAnchor = null;
 let outsideClickHandler = null;
 let escapeKeyHandler = null;
 let lastRenderedCount = null;
 
-// Safeguard the contents of filtering fields
+// Lager hjelpere for å konvertere felt til tekst og lister
 const asText = v => Array.isArray(v) ? v.join(" ") : (v == null ? "" : String(v));
 const toArray = v => Array.isArray(v) ? v : (v == null ? [] : [v]);
 
+// Lager funksjon som lukker popup og fjerner lyttere
 function closeFilterPopup() {
   if (!currentFilterPopup) return;
   currentFilterPopup.remove();
@@ -41,6 +45,7 @@ function closeFilterPopup() {
   }
 }
 
+// Lager funksjon som åpner eller lukker popup ved nytt klikk
 function toggleFilterPopup(anchor, field, label, filters, data) {
   if (currentFilterPopup && currentFilterPopupAnchor === anchor) {
     closeFilterPopup();
@@ -49,6 +54,7 @@ function toggleFilterPopup(anchor, field, label, filters, data) {
   openFilterPopup(anchor, field, label, filters, data);
 }
 
+// Lager funksjon som bygger popup og plasserer den ved knappen
 function openFilterPopup(anchor, field, label, filters, data) {
   closeFilterPopup();
 
@@ -91,7 +97,7 @@ function openFilterPopup(anchor, field, label, filters, data) {
   document.body.appendChild(popup);
   popup.addEventListener("click", ev => ev.stopPropagation());
 
-  // Position popup near anchor without shifting layout
+  // Plasserer popup under knappen
   const rect = anchor.getBoundingClientRect();
   const popupRect = popup.getBoundingClientRect();
   let top = rect.bottom + 8;
@@ -103,12 +109,15 @@ function openFilterPopup(anchor, field, label, filters, data) {
     left = Math.max(16, window.innerWidth - popupRect.width - 16);
   }
 
+  // Setter popup-posisjon
   popup.style.top = `${top}px`;
   popup.style.left = `${left}px`;
 
+  // Lagre kobling til popup og tilhørende knapp
   currentFilterPopup = popup;
   currentFilterPopupAnchor = anchor;
 
+  // Oppretter lytter for å lukke popup med klikk utenfor
   outsideClickHandler = event => {
     if (!currentFilterPopup) return;
     if (currentFilterPopup.contains(event.target)) return;
@@ -117,6 +126,7 @@ function openFilterPopup(anchor, field, label, filters, data) {
   };
   document.addEventListener("click", outsideClickHandler, true);
 
+  // Oppretter lytter for å lukke popup med esc
   escapeKeyHandler = event => {
     if (event.key === "Escape") {
       closeFilterPopup();
@@ -125,14 +135,14 @@ function openFilterPopup(anchor, field, label, filters, data) {
   document.addEventListener("keydown", escapeKeyHandler);
 }
 
-// Check if a project matches the current filters and search
+// Lager funksjon som sjekker hvert prosjekt: passer det med søket og valgte filtre?
 function matchesFilters(project) {
   const searchText = activeFilters.search.toLowerCase();
   const title = asText(project.title).toLowerCase();
   const description = asText(project.description).toLowerCase();
   const authors = toArray(project.authors).map(a => a.toLowerCase());
 
-  // Check if search text matches any relevant field
+  // Sjekker om søketeksten matcher relevante felter
   const searchMatch =
     title.includes(searchText) ||
     description.includes(searchText) ||
@@ -142,7 +152,7 @@ function matchesFilters(project) {
     toArray(project.data).some(d => String(d).toLowerCase().includes(searchText)) ||
     asText(project.language).toLowerCase().includes(searchText);
 
-  // Check if project matches all selected filters
+  // Returnerer treff for prosjekter med alle valgte søke- og filterverdier
   return searchMatch && FILTER_FIELDS.every(field => {
     const selected = activeFilters[field];
     if (!selected.size) return true;
@@ -151,26 +161,26 @@ function matchesFilters(project) {
   });
 }
 
-// Render the list of projects that match the filters
+// Lager funksjon som bygger og rendrer liste med prosjektkort etter aktive filtre
 function renderProjects(data) {
   const container = document.getElementById("projects");
   container.innerHTML = "";
   const filtered = data.filter(matchesFilters);
 
-  // Update the counter
+  // Oppdaterer telleren for antall prosjekter
   const counter = document.getElementById("project-counter");
   if (counter) {
     counter.textContent = `${filtered.length} resultat${filtered.length === 1 ? '' : 'er'}`;
     if (lastRenderedCount !== filtered.length) {
+      // Restarter puls-animasjonen når trefflisten endres
       counter.classList.remove("counter-pulse");
-      // Force reflow to restart animation on consecutive updates
       // eslint-disable-next-line no-unused-expressions
       counter.offsetWidth;
       counter.classList.add("counter-pulse");
       lastRenderedCount = filtered.length;
     }
   }
-
+  // Sjekker filtrerte prosjekter og oppretter elementer (resultatkort) i UI
   for (const project of filtered) {
     const card = document.createElement("div");
     card.className = "project-card";
@@ -188,7 +198,7 @@ function renderProjects(data) {
   }
 }
 
-// Render all filter groups (language, data, methods, themes)
+// Lager funksjon som tegner alle filtergrupper (språk, data, metode, tema)
 function updateFilters(data) {
   closeFilterPopup();
   const filtersContainer = document.getElementById("filters");
@@ -199,14 +209,14 @@ function updateFilters(data) {
   renderFilters(data, "themes", "Tema");
 }
 
-// Render a single filter group as a set of buttons
+// Lager funksjon som bygger én filtergruppe i UI-et
 function renderFilters(data, field, label) {
   const filtersContainer = document.getElementById("filters");
   const group = document.createElement("div");
   group.className = "filter-group";
   group.innerHTML = `<h4>${label}</h4>`;
 
-  // Only show filter options available after applying other filters (excluding this group)
+  // Sjekker aktive filtre og fjerner utilgjengelige: bare relevante filtre vises
   const filteredData = data.filter(project => {
     return FILTER_FIELDS.every(f => {
       const selected = activeFilters[f];
@@ -216,7 +226,7 @@ function renderFilters(data, field, label) {
     });
   });
 
-  // Count occurrences of each filter value in the filtered data
+  // Teller hvor ofte hvert filtervalg forekommer i resultatlisten
   const counts = {};
   for (const p of filteredData) {
     for (const v of toArray(p[field])) {
@@ -224,7 +234,7 @@ function renderFilters(data, field, label) {
     }
   }
 
-  // Sort filter values by descending count, then alphabetically for ties
+  // Sorterer filtervalg etter antall treff først; fallback til alfabetisk
   const allFilters = Object.keys(counts).sort((a, b) =>
     counts[b] - counts[a] || a.localeCompare(b)
   );
@@ -240,11 +250,13 @@ function renderFilters(data, field, label) {
   const visibleValues = [];
   const seen = new Set();
 
+  // Sorterer valgte filtre rekkefølgen de er valgt i
   for (const value of orderedSelected) {
     if (seen.has(value)) continue;
     visibleValues.push(value);
     seen.add(value);
   }
+  // Fyller listen med resterende filtre til maksgrensen
   for (const value of remainingFilters) {
     if (visibleValues.length >= visibleLimit) break;
     if (seen.has(value)) continue;
@@ -252,11 +264,11 @@ function renderFilters(data, field, label) {
     seen.add(value);
   }
 
-  // Create a container for the filter buttons
+  // Oppretter container for filterknappene
   const btnContainer = document.createElement("div");
   btnContainer.className = "filter-btn-container";
 
-  // Render only the first N filter buttons
+  // Viser bare de første filtrene som skal være synlig
   visibleValues.forEach(value => {
     const btn = document.createElement("button");
     btn.className = "filter-btn";
@@ -278,7 +290,7 @@ function renderFilters(data, field, label) {
   });
   group.appendChild(btnContainer);
 
-  // Only show "og X flere" if there are more available filters than shown and not currently selected
+  // Viser "og x flere" når flere uvalgte filtre finnes
   const hiddenFilters = remainingFilters.filter(value => !visibleValues.includes(value));
   let more;
   if (hiddenFilters.length) {
@@ -301,7 +313,7 @@ function renderFilters(data, field, label) {
   filtersContainer.appendChild(group);
 }
 
-// Fetch project data and initialize the UI
+// Hent prosjektdata og initialiser grensesnittet
 fetch("projects.json")
   .then(res => res.json())
   .then(data => {

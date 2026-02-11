@@ -255,6 +255,11 @@ body {
   margin: 0.5rem 0;
 }
 
+/* Navbar logo */
+.navbar-brand img {
+  max-height: 55px;
+}
+
 html {
   overflow-y: scroll;
 }

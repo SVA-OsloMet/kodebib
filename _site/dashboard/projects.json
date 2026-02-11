@@ -1,25 +1,127 @@
 [
   {
-    "title": "Alternative medier og islam",
+    "title": "When Do Voters Punish Corrupt Politicians? Evidence from a Field and Survey Experiment",
+    "authors": [
+      "Yuri Kasahara",
+      "Miguel P. De Figueiredo",
+      "F. Daniel Hidalgo"
+    ],
+    "language": "R",
+    "data": "survey experiment",
+    "methods": [
+      "OLS"
+    ],
+    "themes": [
+      "corruption",
+      "party bias",
+      "polarization"
+    ],
+    "description": "Les mer: https://doi.org/10.1017/S0007123421000727",
+    "folder": "policies-make-politicians",
+    "files": [
+      "policies-make-politicians/codebook.pdf",
+      "policies-make-politicians/SPexperiment_data.RData",
+      "policies-make-politicians/log_file.txt",
+      "policies-make-politicians/replication_code.R"
+    ]
+  },
+  {
+    "title": "COVID-19 vaksiner: Misinformasjon og diskurser",
     "authors": "Siri Frisli",
     "language": "R",
     "data": "text corpus",
     "methods": [
-      "web scraping",
-      "topic modeling"
-    ],
-    "themes": [
-      "alternative medier",
-      "tekstanalyse",
+      "topic modeling",
+      "sentiment analysis",
       "mixed-methods"
     ],
-    "description": "Unders\u00f8ker diskursive trender og endringer i m\u00e5ten alternative medier tilknyttet det norske ytre h\u00f8yre har representert islam \u00e5rene 2003-2021. Les mer her: http://urn.nb.no/URN:NBN:no-98456",
-    "folder": "altmedia-islam-topic-modeling",
+    "themes": [
+      "sosiale medier",
+      "tekstanalyse",
+      "misinformasjon"
+    ],
+    "description": "Unders\u00f8ker diskursive trender innen vaksinemisinformasjon fra COVID-19 pandemien. Les mer her: https://doi.org/10.1177/20563051251347614",
+    "folder": "CADS-covid-topic-modeling",
     "files": [
-      "altmedia-islam-topic-modeling/Bearbeiding.R",
-      "altmedia-islam-topic-modeling/README.md",
-      "altmedia-islam-topic-modeling/Innsamling.R",
-      "altmedia-islam-topic-modeling/Analyse.R"
+      "CADS-covid-topic-modeling/STM.R",
+      "CADS-covid-topic-modeling/sentiments.R",
+      "CADS-covid-topic-modeling/topics_30.txt"
+    ]
+  },
+  {
+    "title": "Sosialhjelp i microdata.no",
+    "authors": [
+      "Kristian Tvedt"
+    ],
+    "language": "microdata.no",
+    "data": [
+      "registerdata"
+    ],
+    "themes": [
+      "sosialhjelp",
+      "innvandring",
+      "kommuneanalyse"
+    ],
+    "methods": [
+      "deskriptiv statistikk",
+      "logit"
+    ],
+    "description": "Definerer sosialhjelpsmottakere, langtidsmottakere og gjengangere i Microdata.no. Inkluderer deskriptiv statistikk p\u00e5 kommuneniv\u00e5 og logistisk regresjon.",
+    "folder": "microdata-sosialhjelp",
+    "files": [
+      "microdata-sosialhjelp/microdata logit sosialhjelpsmottakere.txt"
+    ]
+  },
+  {
+    "title": "FD-Trygd: Vasking av mikrodata",
+    "authors": [
+      "\u00c5smund Hermansen"
+    ],
+    "language": "Stata",
+    "data": [
+      "FD-trygd",
+      "registerdata"
+    ],
+    "methods": [
+      "forl\u00f8psanalyse"
+    ],
+    "themes": [
+      "sysselsetting",
+      "arbeidss\u00f8kere",
+      "overf\u00f8ringer"
+    ],
+    "description": "Tilrettelegging av mikrodata fra SSBs variabelomr\u00e5de FD-Trygd, inkl. sysselsetting, arbeidss\u00f8kere, ytelser og andre overf\u00f8ringer: AAP, sosialhjelp, sykepenger, uf\u00f8retrygd, uf\u00f8repensjon, kvalifiseringsprogrammet (KVP).",
+    "folder": "FD-trygd",
+    "files": [
+      "FD-trygd/Sykepenger.do",
+      "FD-trygd/KVP.do",
+      "FD-trygd/Medisinsk+rehabilitering.do",
+      "FD-trygd/Sysselsatt.do",
+      "FD-trygd/Uf\u00f8repensjon.do",
+      "FD-trygd/Arbeidss\u00f8ker.do",
+      "FD-trygd/AAP.do",
+      "FD-trygd/Attf\u00f8ring.do",
+      "FD-trygd/Tidsbegrenset+uf\u00f8retrygd.do",
+      "FD-trygd/Sosialhjelp.do"
+    ]
+  },
+  {
+    "title": "Movers from the city in the first year of covid",
+    "authors": "Marianne T\u00f8nnessen",
+    "language": "microdata.no",
+    "data": "registerdata",
+    "methods": [
+      "deskriptiv statistikk",
+      "regresjonsanalyse"
+    ],
+    "themes": [
+      "innenlands flytting",
+      "yrker"
+    ],
+    "description": "Finner trender i utflyttingen fra Oslo f\u00f8r og under korona. Se publikasjon her: https://www.scup.com/doi/10.18261/issn.2703-8866-2021-02-03",
+    "folder": "microdata-covid-migration",
+    "files": [
+      "microdata-covid-migration/Movers from the city in the first year of Covid.txt"
     ]
   },
   {
@@ -42,27 +144,8 @@
     "description": "Identifiserer romlig autokorrelasjon i r\u00e5data og regresjonsresidualer. Spesifiserer og tester alternative modeller: SEM og SAR.",
     "folder": "spatial-regression",
     "files": [
-      "spatial-regression/spatial_regression.R",
-      "spatial-regression/Data"
-    ]
-  },
-  {
-    "title": "Movers from the city in the first year of covid",
-    "authors": "Marianne T\u00f8nnessen",
-    "language": "microdata.no",
-    "data": "registerdata",
-    "methods": [
-      "deskriptiv statistikk",
-      "regresjonsanalyse"
-    ],
-    "themes": [
-      "innenlands flytting",
-      "yrker"
-    ],
-    "description": "Finner trender i utflyttingen fra Oslo f\u00f8r og under korona. Se publikasjon her: https://www.scup.com/doi/10.18261/issn.2703-8866-2021-02-03",
-    "folder": "microdata-covid-migration",
-    "files": [
-      "microdata-covid-migration/Movers from the city in the first year of Covid.txt"
+      "spatial-regression/Data",
+      "spatial-regression/spatial_regression.R"
     ]
   },
   {
@@ -91,109 +174,26 @@
     ]
   },
   {
-    "title": "Sosialhjelp i microdata.no",
-    "authors": [
-      "Kristian Tvedt"
-    ],
-    "language": "microdata.no",
-    "data": [
-      "registerdata"
-    ],
-    "themes": [
-      "sosialhjelp",
-      "innvandring",
-      "kommuneanalyse"
-    ],
-    "methods": [
-      "deskriptiv statistikk",
-      "logit"
-    ],
-    "description": "Definerer sosialhjelpsmottakere, langtidsmottakere og gjengangere i Microdata.no. Inkluderer deskriptiv statistikk p\u00e5 kommuneniv\u00e5 og logistisk regresjon.",
-    "folder": "microdata-sosialhjelp",
-    "files": [
-      "microdata-sosialhjelp/microdata logit sosialhjelpsmottakere.txt"
-    ]
-  },
-  {
-    "title": "COVID-19 vaksiner: Misinformasjon og diskurser",
+    "title": "Alternative medier og islam",
     "authors": "Siri Frisli",
     "language": "R",
     "data": "text corpus",
     "methods": [
-      "topic modeling",
-      "sentiment analysis",
+      "web scraping",
+      "topic modeling"
+    ],
+    "themes": [
+      "alternative medier",
+      "tekstanalyse",
       "mixed-methods"
     ],
-    "themes": [
-      "sosiale medier",
-      "tekstanalyse",
-      "misinformasjon"
-    ],
-    "description": "Unders\u00f8ker diskursive trender innen vaksinemisinformasjon fra COVID-19 pandemien. Les mer her: https://doi.org/10.1177/20563051251347614",
-    "folder": "CADS-covid-topic-modeling",
+    "description": "Unders\u00f8ker diskursive trender og endringer i m\u00e5ten alternative medier tilknyttet det norske ytre h\u00f8yre har representert islam \u00e5rene 2003-2021. Les mer her: http://urn.nb.no/URN:NBN:no-98456",
+    "folder": "altmedia-islam-topic-modeling",
     "files": [
-      "CADS-covid-topic-modeling/sentiments.R",
-      "CADS-covid-topic-modeling/STM.R",
-      "CADS-covid-topic-modeling/topics_30.txt"
-    ]
-  },
-  {
-    "title": "FD-Trygd: Vasking av mikrodata",
-    "authors": [
-      "\u00c5smund Hermansen"
-    ],
-    "language": "Stata",
-    "data": [
-      "FD-trygd",
-      "registerdata"
-    ],
-    "methods": [
-      "Forl\u00f8psanalyse"
-    ],
-    "themes": [
-      "sysselsetting",
-      "arbeidss\u00f8kere",
-      "overf\u00f8ringer"
-    ],
-    "description": "Tilrettelegging av mikrodata fra SSBs variabelomr\u00e5de FD-Trygd, inkl. sysselsetting, arbeidss\u00f8kere, ytelser og andre overf\u00f8ringer: AAP, sosialhjelp, sykepenger, uf\u00f8retrygd, uf\u00f8repensjon, kvalifiseringsprogrammet (KVP).",
-    "folder": "FD-trygd",
-    "files": [
-      "FD-trygd/Sykepenger.do",
-      "FD-trygd/Attf\u00f8ring.do",
-      "FD-trygd/Tidsbegrenset+uf\u00f8retrygd.do",
-      "FD-trygd/Arbeidss\u00f8ker.do",
-      "FD-trygd/Sosialhjelp.do",
-      "FD-trygd/Medisinsk+rehabilitering.do",
-      "FD-trygd/AAP.do",
-      "FD-trygd/Sysselsatt.do",
-      "FD-trygd/Uf\u00f8repensjon.do",
-      "FD-trygd/KVP.do"
-    ]
-  },
-  {
-    "title": "When Do Voters Punish Corrupt Politicians? Evidence from a Field and Survey Experiment",
-    "authors": [
-      "Yuri Kasahara",
-      "Miguel P. De Figueiredo",
-      "F. Daniel Hidalgo"
-    ],
-    "language": "R",
-    "data": "survey experiment",
-    "methods": [
-      "OLS"
-    ],
-    "themes": [
-      "corruption",
-      "party bias",
-      "polarization"
-    ],
-    "description": "Les mer: https://doi.org/10.1017/S0007123421000727",
-    "folder": "policies-make-politicians",
-    "files": [
-      "policies-make-politicians/codebook.pdf",
-      "policies-make-politicians/SPexperiment_data.RData",
-      "policies-make-politicians/replication_code.R",
-      "policies-make-politicians/log_file.txt"
+      "altmedia-islam-topic-modeling/Analyse.R",
+      "altmedia-islam-topic-modeling/Innsamling.R",
+      "altmedia-islam-topic-modeling/README.md",
+      "altmedia-islam-topic-modeling/Bearbeiding.R"
     ]
   },
   {
@@ -215,12 +215,12 @@
     "description": "Henter og klargj\u00f8r Twitter data, og trener en semi-supervised self-training klassifiaksjonsmodell for \u00e5 gjenkjenne misinformasjon. Les mer her: https://doi.org/10.1007/s42001-025-00367-x",
     "folder": "SSST-covid-classify-misinfo",
     "files": [
-      "SSST-covid-classify-misinfo/Classification",
-      "SSST-covid-classify-misinfo/Analysis",
       "SSST-covid-classify-misinfo/Processing",
-      "SSST-covid-classify-misinfo/anms.xlsx",
       "SSST-covid-classify-misinfo/README.md",
-      "SSST-covid-classify-misinfo/Scrapers"
+      "SSST-covid-classify-misinfo/Classification",
+      "SSST-covid-classify-misinfo/anms.xlsx",
+      "SSST-covid-classify-misinfo/Scrapers",
+      "SSST-covid-classify-misinfo/Analysis"
     ]
   }
 ]
