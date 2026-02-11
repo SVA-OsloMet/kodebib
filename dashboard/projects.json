@@ -125,6 +125,26 @@
     ]
   },
   {
+    "title": "Diff-in-diff-analyse",
+    "authors": "Kristian Tvedt",
+    "language": "R",
+    "data": "registerdata",
+    "methods": [
+      "did-modell",
+      "kausaleffekter"
+    ],
+    "themes": [
+      "integrering",
+      "innvandring",
+      "arbeidsmarkedsanalyse"
+    ],
+    "description": "Diff-in-diff-analyse av arbeidsdeltakelse i ulike kommunegrupper",
+    "folder": "test-project",
+    "files": [
+      "test-project/script.R"
+    ]
+  },
+  {
     "title": "Spatial regression",
     "authors": [
       "Kristian Tvedt"
