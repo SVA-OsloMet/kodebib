@@ -1,1 +1,1 @@
-Sitemap: https://ktvedt.github.io/sva-codelib/sitemap.xml
+Sitemap: https://SVA-OsloMet.github.io/sva-codelib/sitemap.xml
