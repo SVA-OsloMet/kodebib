@@ -212,6 +212,26 @@
     ]
   },
   {
+    "title": "Utleggstrekk i l\u00f8nn",
+    "authors": "Krisztina Gyure",
+    "language": "Stata",
+    "data": [
+      "registerdata",
+      "l\u00f8s\u00f8reregisteret"
+    ],
+    "methods": [
+      "databearbeiding"
+    ],
+    "themes": [
+      "l\u00f8nnstrekk"
+    ],
+    "description": "Lager \u00e5rsfiler med utleggstrekk i l\u00f8nn",
+    "folder": "utleggstrekk-lonn",
+    "files": [
+      "utleggstrekk-lonn/utleggstrkke i l\u00f8nn.do"
+    ]
+  },
+  {
     "title": "Lage svarfordelinger fra survey",
     "authors": [
       "Kjersti Stabell Wiggen",
