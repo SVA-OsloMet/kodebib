@@ -49,4 +49,4 @@ Det er også mulig å dele kode hvis du har en GitHub-konto tilknyttet SVA.
 
 **Kan jeg foreslå nye funksjoner?**
 
-Ja, vi setter pris på forslag og tilbakemeldinger! Bruk issues på GitHub eller kontakt administrator: [navn + kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
+Ja, vi setter pris på forslag og tilbakemeldinger! Bruk issues på GitHub eller kontakt administrator: [kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
