@@ -28,7 +28,24 @@ Er det flere filer må de lastes ned hver for seg. Pass på at du har samme mapp
 
 ## Hvordan kan jeg bidra?
 
-Du må ha en GitHub-konto tilknyttet SVA for å sende inn kode. Send inn en pull request på GitHub eller kontakt administrator: [navn + kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
+Hvis du har kode som kan være nyttig for andre, oppfordrer vi til å dele den. Det er flere grunner til å dele: script-filer er dokumentasjon som sikrer reproduserbarhet og transparens i forskningen. Deling av kode viser også mangfoldet i metodekunnskap, kan gjøre det lettere for andre å lære nye metoder, og det kan åpne for at nye prosjektteam finner hverandre i akkvisisjoner. Det er altså nyttig for flere enn de andre kvanti-forskerne.
+
+Det er ikke et krav at scriptet ser pent ut, men det er en fordel at du har kommentert de viktigste stegene, slik at det er mulig å forstå hva koden gjør. Hvis du har script-filer som utfører mange helt ulike analysesteg, velger du om det er hensiktsmessig å laste opp hele scriptet eller bare deler av det.
+
+Legg ved excel-filen som heter "metadata" ([last ned mal](../assets/metadata.xlsx)). Metadata inneholder:
+
+- Tittel: Kort tittel som beskriver scriptets formål eller publisert studie.
+- Forfatter: Navnet ditt og eventuelle medforfattere.
+- Programmeringsspråk: F.eks. Stata, R, mm.
+- Data: F.eks. registerdata, surveydata, text corpus.
+- Metode: F. eks. bearbeiding, OLS.
+- Tema: Hvilke fagområder har du jobbet med? F.eks. sysselsetting, migrasjon, utenforskap.
+- Beskrivelse (maks 3 setninger): Hvilke data behandles, og hva er formålet med scriptet? Legg ved lenke til artikkel/rapport om tilgjengelig.
+
+For å dele kode, legg ved en metadata-fil og script-filen(e), gjerne i en zip-mappe, og send til administrator.
+
+SVA-ansatte kan dele kode på epost til administrator: [navn + kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
+Det er også mulig å dele kode hvis du har en GitHub-konto tilknyttet SVA.
 
 **Kan jeg foreslå nye funksjoner?**
 
