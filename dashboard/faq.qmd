@@ -44,7 +44,7 @@ Legg ved excel-filen som heter "metadata" ([last ned mal](../assets/metadata.xls
 
 For å dele kode, legg ved en metadata-fil og script-filen(e), gjerne i en zip-mappe, og send til administrator.
 
-SVA-ansatte kan dele kode på epost til administrator: [navn + kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
+SVA-ansatte kan dele kode på epost til administrator: [kodebibliotek@365.oslomet.no](mailto:kodebibliotek@365.oslomet.no).
 Det er også mulig å dele kode hvis du har en GitHub-konto tilknyttet SVA.
 
 **Kan jeg foreslå nye funksjoner?**
