@@ -26,6 +26,24 @@
     ]
   },
   {
+    "title": "Utdanningsvariabel",
+    "authors": "Therese Dokken",
+    "language": "Stata",
+    "data": "registerdata",
+    "methods": [
+      "bearbeiding"
+    ],
+    "themes": [
+      "utdanning",
+      "kategorisering"
+    ],
+    "description": "Lager bredere kategorier av fullf\u00f8rt utdanning",
+    "folder": "utdanning-nus",
+    "files": [
+      "utdanning-nus/Utdanningsvariabel.do"
+    ]
+  },
+  {
     "title": "COVID-19 vaksiner: Misinformasjon og diskurser",
     "authors": "Siri Frisli",
     "language": "R",
@@ -106,24 +124,6 @@
     ]
   },
   {
-    "title": "Utdanningsvariabel",
-    "authors": "Therese Dokken",
-    "language": "Stata",
-    "data": "registerdata",
-    "methods": [
-      "bearbeiding"
-    ],
-    "themes": [
-      "utdanning",
-      "kategorisering"
-    ],
-    "description": "Lager bredere kategorier av fullf\u00f8rt utdanning",
-    "folder": "utdanning",
-    "files": [
-      "utdanning/Utdanningsvariabel.do"
-    ]
-  },
-  {
     "title": "Movers from the city in the first year of covid",
     "authors": "Marianne T\u00f8nnessen",
     "language": "microdata.no",
@@ -143,23 +143,20 @@
     ]
   },
   {
-    "title": "Diff-in-diff-analyse",
-    "authors": "Kristian Tvedt",
-    "language": "R",
-    "data": "registerdata",
+    "title": "Lage excel-fil med gjennomsnittsverdier fra survey",
+    "authors": "Kjersti Stabell Wiggen",
+    "language": "Stata",
+    "data": "surveydata",
     "methods": [
-      "did-modell",
-      "kausaleffekter"
+      "bearbeiding"
     ],
     "themes": [
-      "integrering",
-      "innvandring",
-      "arbeidsmarkedsanalyse"
+      "surveydata"
     ],
-    "description": "Diff-in-diff-analyse av arbeidsdeltakelse i ulike kommunegrupper",
-    "folder": "test-project",
+    "description": "Lager excel-ark med gjennomsnitt og N for f.eks. Likert-sp\u00f8rsm\u00e5l i survey. Ogs\u00e5 fordelt p\u00e5 undergrupper som Fylke, kj\u00f8nn, alder osv",
+    "folder": "lage-gjennomsnitt",
     "files": [
-      "test-project/script.R"
+      "lage-gjennomsnitt/lage gjennomsnitt.do"
     ]
   },
   {
@@ -212,23 +209,22 @@
     ]
   },
   {
-    "title": "Utleggstrekk i l\u00f8nn",
-    "authors": "Krisztina Gyure",
-    "language": "Stata",
-    "data": [
-      "registerdata",
-      "l\u00f8s\u00f8reregisteret"
-    ],
+    "title": "Harmonisering av kommunenumre 1990-2024",
+    "authors": "Kristian Tvedt",
+    "language": "R",
+    "data": "kommunedata",
     "methods": [
-      "databearbeiding"
+      "bearbeiding"
     ],
     "themes": [
-      "l\u00f8nnstrekk"
+      "kommunestruktur"
     ],
-    "description": "Lager \u00e5rsfiler med utleggstrekk i l\u00f8nn",
-    "folder": "utleggstrekk-lonn",
+    "description": "Bruker en koblingsn\u00f8kkel med historiske endringer i kommunestrukturen til \u00e5 harmonisere kommunenumre i valgt tidsperiode. Plotter s\u00e5 et kart over befolkningsendring i kommunene 1990-2023.",
+    "folder": "harmonisering-kommuner",
     "files": [
-      "utleggstrekk-lonn/utleggstrkke i l\u00f8nn.do"
+      "harmonisering-kommuner/kommuner2021_simplified.geojson",
+      "harmonisering-kommuner/kommuner historisk koblingsn\u00f8kkel.R",
+      "harmonisering-kommuner/koblingsnokkel_kommuneendringer_1990_2024.xlsx"
     ]
   },
   {
