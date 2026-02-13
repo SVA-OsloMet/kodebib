@@ -1,0 +1,10 @@
+title: "Lage svarfordelinger fra survey"
+authors:
+- "Kjersti Stabell Wiggen"
+- "Marte"
+language: "Stata"
+data: "surveydata"
+methods: ["bearbeiding"]
+themes: ["surveydata", "svarfordeling"]
+description: "Lager excel-ark med svarfordeling i prosent, N, gjennomsnitt og standardavvik\
+  \ for alle spørsmål i survey"

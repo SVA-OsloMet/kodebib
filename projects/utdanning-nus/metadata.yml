@@ -1,0 +1,7 @@
+title: "Utdanningsvariabel"
+authors: "Therese Dokken"
+language: "Stata"
+data: "registerdata"
+methods: ["bearbeiding"]
+themes: ["utdanning", "kategorisering"]
+description: "Lager bredere kategorier av fullført utdanning"

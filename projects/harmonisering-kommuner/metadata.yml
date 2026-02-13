@@ -1,0 +1,9 @@
+title: "Harmonisering av kommunenumre 1990-2024"
+authors: "Kristian Tvedt"
+language: "R"
+data: "kommunedata"
+methods: ["bearbeiding"]
+themes: ["kommunestruktur"]
+description: "Bruker en koblingsnøkkel med historiske endringer i kommunestrukturen\
+  \ til å harmonisere kommunenumre i valgt tidsperiode. Plotter så et kart over befolkningsendring\
+  \ i kommunene 1990-2023."

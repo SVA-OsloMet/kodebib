@@ -1,0 +1,8 @@
+title: "Lage excel-fil med gjennomsnittsverdier fra survey"
+authors: "Kjersti Stabell Wiggen"
+language: "Stata"
+data: "surveydata"
+methods: ["bearbeiding"]
+themes: ["surveydata"]
+description: "Lager excel-ark med gjennomsnitt og N for f.eks. Likert-spørsmål i survey.\
+  \ Også fordelt på undergrupper som Fylke, kjønn, alder osv"

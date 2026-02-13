@@ -13,7 +13,7 @@ website:
   navbar:
     logo: assets/logo-oslomet.svg
     left:
-      - href: dashboard/index.qmd
+      - href: index.qmd
         text: Kodebibliotek
       - href: dashboard/faq.qmd
         text: FAQ

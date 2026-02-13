@@ -5,11 +5,11 @@ page-layout: full
 ---
 
 <!-- Link til CSS stylesheet -->
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="styles.css">
 
 <!-- Introtekst topp -->
 <div class="explanation-text">
-  Her finner du kode delt av SVA-forskere. Bruk søkefeltet og filtrene for å lete i biblioteket.
+  Her finner du kode delt av SVA-forskere. Bruk søkefeltet og filtrene for å lete i biblioteket. All kode er søkbar.
 </div>
 
 <!-- Søkefelt og filtre -->
@@ -27,12 +27,12 @@ page-layout: full
 </div>
 
 <!-- JS: filtrering og søk -->
-<script src="filters.js"></script>
+<script src="dashboard/filters.js"></script>
 
 <!-- Footer: Kreditering og kontakt -->
 <section id="contact" class="contact-footer">
   <b>Kreditering:</b> Vi oppfordrer til å kreditere forfatterne når du bruker store deler av andres kode.
   <p>
   <b>Finner du feil?</b> Opprett en sak på <a href="https://github.com/SVA-OsloMet/kodebib/issues" target="_blank" rel="noopener">GitHub Issues</a> eller ta kontakt med administrator: <a href="mailto:kodebibliotek@365.oslomet.no">kodebibliotek@365.oslomet.no</a></p>
-  <p>Se <a href="faq.html">FAQ</a> for mer informasjon.</p>
+  <p>Se <a href="dashboard/faq.html">FAQ</a> for mer informasjon.</p>
 </section>

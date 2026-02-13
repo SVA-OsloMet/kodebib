@@ -1,4 +1,5 @@
 import os, yaml, json
+from pathlib import Path
 import pandas as pd
 from collections import OrderedDict
 from openpyxl import load_workbook
@@ -9,6 +10,49 @@ all_metadata = []
 
 created_count = 0
 missing_projects = []
+
+CODE_EXTS = {
+    ".r", ".rmd", ".qmd", ".py", ".do", ".m", ".jl", ".sql", ".js", ".ts",
+    ".sh", ".bash", ".zsh", ".ps1", ".rb", ".java", ".c", ".h", ".cpp", ".hpp",
+    ".md", ".txt", ".yaml", ".yml", ".toml", ".json"
+}
+MAX_CODE_FILE_BYTES = 200_000
+MAX_CODE_TOTAL_BYTES = 500_000
+
+
+def _read_text(path, max_bytes):
+    with open(path, "rb") as f:
+        data = f.read(max_bytes + 1)
+    if b"\x00" in data:
+        return None, 0
+    if len(data) > max_bytes:
+        data = data[:max_bytes]
+    text = data.decode("utf-8", errors="ignore")
+    return text, len(data)
+
+
+def _build_code_index(folder_path, files):
+    parts = []
+    total_bytes = 0
+    for fname in files:
+        ext = Path(fname).suffix.lower()
+        if ext not in CODE_EXTS:
+            continue
+        path = os.path.join(folder_path, fname)
+        if not os.path.isfile(path):
+            continue
+        size = os.path.getsize(path)
+        if size > MAX_CODE_FILE_BYTES:
+            continue
+        remaining = MAX_CODE_TOTAL_BYTES - total_bytes
+        if remaining <= 0:
+            break
+        text, used = _read_text(path, min(MAX_CODE_FILE_BYTES, remaining))
+        if not text:
+            continue
+        parts.append(f"\n\n# file: {fname}\n{text}")
+        total_bytes += used
+    return "".join(parts).strip()
 
 # read .gitignore and build pathspec to ignore when compiling projects
 import pathspec
@@ -174,6 +218,7 @@ for folder in os.listdir(project_dir):
             and not spec.match_file(os.path.join(folder_path, f))
         ]
         metadata["files"] = [f"{folder}/{f}" for f in files]
+        metadata["code"] = _build_code_index(folder_path, files)
         all_metadata.append(metadata)
     else:
         missing_projects.append(folder)
