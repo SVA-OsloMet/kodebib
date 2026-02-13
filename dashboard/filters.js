@@ -28,6 +28,100 @@ let lastRenderedCount = null;
 // Lager hjelpere for å konvertere felt til tekst og lister
 const asText = v => Array.isArray(v) ? v.join(" ") : (v == null ? "" : String(v));
 const toArray = v => Array.isArray(v) ? v : (v == null ? [] : [v]);
+const MAX_CODE_SNIPPETS = 3;
+const MAX_CODE_LINE_CHARS = 220;
+
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/\'/g, "&#39;");
+}
+
+function escapeRegExp(text) {
+  return String(text).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function highlightMatch(text, query) {
+  const safe = escapeHtml(text);
+  if (!query) return safe;
+  const re = new RegExp(escapeRegExp(query), "ig");
+  return safe.replace(re, match => `<mark class="code-match">${match}</mark>`);
+}
+
+function truncateAroundMatch(line, query) {
+  if (line.length <= MAX_CODE_LINE_CHARS) return line;
+  const lower = line.toLowerCase();
+  const q = query.toLowerCase();
+  const idx = lower.indexOf(q);
+  if (idx === -1) {
+    return `${line.slice(0, MAX_CODE_LINE_CHARS - 3)}...`;
+  }
+  const half = Math.floor((MAX_CODE_LINE_CHARS - 3) / 2);
+  let start = Math.max(0, idx - half);
+  let end = Math.min(line.length, start + MAX_CODE_LINE_CHARS - 3);
+  if (end - start < MAX_CODE_LINE_CHARS - 3) {
+    start = Math.max(0, end - (MAX_CODE_LINE_CHARS - 3));
+  }
+  let out = line.slice(start, end);
+  if (start > 0) out = `...${out}`;
+  if (end < line.length) out = `${out}...`;
+  return out;
+}
+
+function parseCodeFiles(project) {
+  if (project._codeFiles) return project._codeFiles;
+  const codeText = asText(project.code);
+  if (!codeText) {
+    project._codeFiles = [];
+    return project._codeFiles;
+  }
+  const files = [];
+  let current = null;
+  for (const line of codeText.split(/\r?\n/)) {
+    const match = line.match(/^# file: (.+)$/);
+    if (match) {
+      current = { file: match[1], lines: [] };
+      files.push(current);
+      continue;
+    }
+    if (current) current.lines.push(line);
+  }
+  project._codeFiles = files;
+  return files;
+}
+
+function getCodeMatches(project, query) {
+  const q = String(query || "").toLowerCase();
+  if (!q) return { count: 0, snippets: [] };
+  if (project._codeMatchCache && project._codeMatchCache.q === q) {
+    return project._codeMatchCache;
+  }
+  const files = parseCodeFiles(project);
+  let count = 0;
+  const snippets = [];
+  for (const f of files) {
+    for (let i = 0; i < f.lines.length; i++) {
+      const line = String(f.lines[i] || "");
+      if (!line) continue;
+      if (line.toLowerCase().includes(q)) {
+        count += 1;
+        if (snippets.length < MAX_CODE_SNIPPETS) {
+          snippets.push({
+            file: f.file,
+            line: i + 1,
+            text: truncateAroundMatch(line, q)
+          });
+        }
+      }
+    }
+  }
+  const result = { q, count, snippets };
+  project._codeMatchCache = result;
+  return result;
+}
 
 // Lager funksjon som lukker popup og fjerner lyttere
 function closeFilterPopup() {
@@ -141,18 +235,20 @@ function matchesFilters(project) {
   const title = asText(project.title).toLowerCase();
   const description = asText(project.description).toLowerCase();
   const authors = toArray(project.authors).map(a => a.toLowerCase());
-  const codeIndex = asText(project.code).toLowerCase();
 
   // Sjekker om søketeksten matcher relevante felter
-  const searchMatch =
+  let searchMatch =
     title.includes(searchText) ||
     description.includes(searchText) ||
     authors.some(a => a.includes(searchText)) ||
     toArray(project.themes).some(t => String(t).toLowerCase().includes(searchText)) ||
     toArray(project.methods).some(m => String(m).toLowerCase().includes(searchText)) ||
     toArray(project.data).some(d => String(d).toLowerCase().includes(searchText)) ||
-    asText(project.language).toLowerCase().includes(searchText) ||
-    codeIndex.includes(searchText);
+    asText(project.language).toLowerCase().includes(searchText);
+
+  if (!searchMatch && searchText) {
+    searchMatch = getCodeMatches(project, searchText).count > 0;
+  }
 
   // Returnerer treff for prosjekter med alle valgte søke- og filterverdier
   return searchMatch && FILTER_FIELDS.every(field => {
@@ -186,6 +282,19 @@ function renderProjects(data) {
   for (const project of filtered) {
     const card = document.createElement("div");
     card.className = "project-card";
+    const codeMatches = getCodeMatches(project, activeFilters.search);
+    const codeMatchHtml = (activeFilters.search && codeMatches.count) ? `
+      <div class="code-matches">
+        <div class="code-match-count">${codeMatches.count} treff i kode</div>
+        ${codeMatches.snippets.map(s => `
+          <div class="code-snippet">
+            <div class="code-snippet-meta">${s.file}:${s.line}</div>
+            <code>${highlightMatch(s.text, activeFilters.search)}</code>
+          </div>
+        `).join("")}
+      </div>
+    ` : "";
+
     card.innerHTML = `
       <h3>${project.title}</h3>
       <p><strong>Forfatter:</strong> ${toArray(project.authors).join(", ")}</p>
@@ -194,6 +303,7 @@ function renderProjects(data) {
       <p><strong>Metode:</strong> ${toArray(project.methods).join(", ")}</p>
       <p><strong>Tema:</strong> ${toArray(project.themes).join(", ")}</p>
       <p>${project.description || ""}</p>
+      ${codeMatchHtml}
       <p><a href="https://github.com/SVA-OsloMet/kodebib/tree/main/projects/${project.folder}" target="_blank">Finn filer</a></p>
     `;
     container.appendChild(card);
