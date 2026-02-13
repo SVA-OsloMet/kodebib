@@ -141,6 +141,7 @@ function matchesFilters(project) {
   const title = asText(project.title).toLowerCase();
   const description = asText(project.description).toLowerCase();
   const authors = toArray(project.authors).map(a => a.toLowerCase());
+  const codeIndex = asText(project.code).toLowerCase();
 
   // Sjekker om søketeksten matcher relevante felter
   const searchMatch =
@@ -150,7 +151,8 @@ function matchesFilters(project) {
     toArray(project.themes).some(t => String(t).toLowerCase().includes(searchText)) ||
     toArray(project.methods).some(m => String(m).toLowerCase().includes(searchText)) ||
     toArray(project.data).some(d => String(d).toLowerCase().includes(searchText)) ||
-    asText(project.language).toLowerCase().includes(searchText);
+    asText(project.language).toLowerCase().includes(searchText) ||
+    codeIndex.includes(searchText);
 
   // Returnerer treff for prosjekter med alle valgte søke- og filterverdier
   return searchMatch && FILTER_FIELDS.every(field => {
@@ -192,7 +194,7 @@ function renderProjects(data) {
       <p><strong>Metode:</strong> ${toArray(project.methods).join(", ")}</p>
       <p><strong>Tema:</strong> ${toArray(project.themes).join(", ")}</p>
       <p>${project.description || ""}</p>
-      <p><a href="https://github.com/ktvedt/sva-codelib/tree/main/projects/${project.folder}" target="_blank">Finn filer</a></p>
+      <p><a href="https://github.com/SVA-OsloMet/kodebib/tree/main/projects/${project.folder}" target="_blank">Finn filer</a></p>
     `;
     container.appendChild(card);
   }
@@ -314,7 +316,7 @@ function renderFilters(data, field, label) {
 }
 
 // Hent prosjektdata og initialiser grensesnittet
-fetch("projects.json")
+fetch("dashboard/projects.json")
   .then(res => res.json())
   .then(data => {
     renderProjects(data);
