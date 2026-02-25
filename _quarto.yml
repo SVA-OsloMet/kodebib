@@ -28,4 +28,5 @@ format:
 
 resources:
   - dashboard/projects.json
+  - dashboard/index.html
   - assets/**
